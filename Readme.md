@@ -29,15 +29,10 @@ It allows users to convert currencies in real-time using live exchange rates.
 1. Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
+git clone https://github.com/narayanaswamykonkipudi/currency-coverter.git
 ```
 
-2. Install dependencies:
 
-```
-pip install -r requirements.txt
-```
 
 3. Run the app:
 
@@ -73,10 +68,9 @@ This app uses **FreeCurrencyAPI**.
 
 ## 🌐 Live Demo
 
-👉 Add your deployed link here:
 
 ```
-https://your-app-name.streamlit.app
+https://currencyx.streamlit.app/
 ```
 
 
