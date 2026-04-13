@@ -1,13 +1,11 @@
 import streamlit as st
 import requests
 
-
 if "history" not in st.session_state:
     st.session_state.history = []
 
-
-st.title("💱 Currency Converter App")
-st.caption("Real-time currency conversion using API")
+st.title("💱 CurrencyX")
+st.caption("Fast & simple real-time currency converter")
 
 CURRENCIES = [
     "AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","EUR","GBP",
@@ -26,7 +24,6 @@ with col2:
 
 amount = st.number_input("Enter Amount", min_value=0.0, format="%.2f")
 
-
 API_KEY = "fca_live_bTXwD55VVruh6o5V91jJBTfN2Qe3USxC3ZYogrtv"
 BASE_URL = f"https://api.freecurrencyapi.com/v1/latest?apikey={API_KEY}"
 
@@ -37,56 +34,48 @@ def converter(base):
         res = requests.get(url)
         res.raise_for_status()
         return res.json()['data']
-    except:
+    except requests.exceptions.RequestException:
         return {}
-
 
 if st.button("Convert"):
     if base == target:
         st.warning("Select different currencies")
-
     elif amount == 0:
         st.warning("Please enter amount")
-
     else:
         with st.spinner("Fetching rates..."):
             data = converter(base)
-
         if not data:
             st.error("Failed to fetch data")
-
         elif target in data:
             rate = data[target]
             result = amount * rate
-
             st.info(f"1 {base} = {rate:.4f} {target}")
             st.success(f"💰 {amount:.2f} {base} = {result:.2f} {target}")
-
-            
             st.session_state.history.append(
                 f"{amount:.2f} {base} → {result:.2f} {target}"
             )
-
         else:
             st.error("Conversion failed")
 
-
 if st.checkbox("Show all exchange rates"):
-    data = converter(base)
-    if data:
-        st.table(dict(sorted(data.items())))
-    else:
-        st.error("Failed to fetch data")
-
+    if base:
+        data = converter(base)
+        if data:
+            st.table(dict(sorted(data.items())))
+        else:
+            st.error("Failed to fetch data")
 
 st.subheader("📜 Conversion History")
 
 if st.session_state.history:
     for item in reversed(st.session_state.history):
-        st.write(item)
+        st.write(f"➡️ {item}")
 else:
     st.write("No history yet")
 
-
 if st.button("Clear History"):
     st.session_state.history = []
+
+st.markdown("---")
+st.caption("© 2026 CurrencyX • Built by NarayanaSwamy")")
