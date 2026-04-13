@@ -78,4 +78,4 @@ if st.button("Clear History"):
     st.session_state.history = []
 
 st.markdown("---")
-st.caption("© 2026 CurrencyX • Built by NarayanaSwamy")")
+st.caption("© 2026 CurrencyX • Built by NarayanaSwamy")
