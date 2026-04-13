@@ -27,7 +27,7 @@ with col2:
 amount = st.number_input("Enter Amount", min_value=0.0, format="%.2f")
 
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "fca_live_bTXwD55VVruh6o5V91jJBTfN2Qe3USxC3ZYogrtv"
 BASE_URL = f"https://api.freecurrencyapi.com/v1/latest?apikey={API_KEY}"
 
 @st.cache_data
